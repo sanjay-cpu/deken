@@ -15,9 +15,9 @@ addons:
       - python3
 
 before_install:
-  - sudo chown -Rvf $USER:$GROUP ~/.cache/pip/wheels
   - export DEKEN_BASE_URL=https://raw.githubusercontent.com/${TRAVIS_PULL_REQUEST_SLUG:-$TRAVIS_REPO_SLUG}/${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}/developer
   - echo ${DEKEN_BASE_URL}
+  - if [ "$TRAVIS_OS_NAME" != "osx" ]; then sudo chown -Rvf $USER:$GROUP ~/.cache/pip/wheels; fi
 
 install:
   - mkdir -p ~/bin
